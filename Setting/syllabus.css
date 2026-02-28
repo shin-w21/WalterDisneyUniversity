@@ -353,7 +353,7 @@
   }
 
 
-@media screen and (max-width: 600px) {
+ @media screen and (max-width: 600px) {
       body {
         overflow-x: hidden;
       }
@@ -361,5 +361,17 @@
         transform: scale(0.72);
         transform-origin: top left;
         width: calc(100% / 0.72);
+      }
+      .info-table td.label {
+        width: 72px !important;
+        min-width: 72px !important;
+        max-width: 72px !important;
+        font-size: 11px !important;
+        padding: 3px 4px !important;
+        word-break: break-all;
+      }
+      .schedule-table td {
+        font-size: 11px !important;
+        padding: 2px 3px !important;
       }
     }
