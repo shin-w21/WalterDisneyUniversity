@@ -1,0 +1,353 @@
+@charset "UTF-8";
+
+
+  :root {
+    --disney-blue: #003087;
+    --disney-gold: #C8A84B;
+    --disney-dark: #0A0A2E;
+    --disney-midnight: #0D1B4B;
+    --disney-sky: #1A3A8A;
+    --disney-light-gold: #F5E6B8;
+    --disney-cream: #FDF8EE;
+    --disney-accent: #E8C84A;
+    --disney-red: #C41E3A;
+    --star-color: #FFD700;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: "Noto Serif JP", "游明朝", "Yu Mincho", serif;
+    font-size: 13px;
+    background: var(--disney-dark);
+    color: var(--disney-cream);
+    min-height: 100vh;
+    background-image: 
+      radial-gradient(ellipse at 20% 20%, rgba(200, 168, 75, 0.08) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 80%, rgba(26, 58, 138, 0.15) 0%, transparent 50%),
+      url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23C8A84B' fill-opacity='0.03'%3E%3Cpath d='M30 0 L31.5 10 L40 5 L34 13 L44 12 L36 18 L45 22 L35 23 L40 32 L30 27 L20 32 L25 23 L15 22 L24 18 L16 12 L26 13 L20 5 L28.5 10 Z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+
+  /* Sparkle animation */
+  @keyframes sparkle {
+    0%, 100% { opacity: 0; transform: scale(0.5); }
+    50% { opacity: 1; transform: scale(1); }
+  }
+  @keyframes shimmer {
+    0% { background-position: -200% center; }
+    100% { background-position: 200% center; }
+  }
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-4px); }
+  }
+  @keyframes twinkle {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 1; }
+  }
+
+  /* Stars background */
+  .stars {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+  }
+  .star {
+    position: absolute;
+    width: 2px; height: 2px;
+    background: #fff;
+    border-radius: 50%;
+    animation: twinkle var(--duration, 3s) var(--delay, 0s) infinite;
+  }
+
+  /* Header */
+  .header {
+    position: relative;
+    z-index: 10;
+    background: linear-gradient(135deg, var(--disney-dark) 0%, var(--disney-midnight) 50%, var(--disney-blue) 100%);
+    padding: 16px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 2px solid var(--disney-gold);
+    box-shadow: 0 4px 30px rgba(200, 168, 75, 0.3);
+  }
+  .header::before {
+    content: '';
+    position: absolute;
+    bottom: -1px; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--disney-gold), transparent);
+  }
+  .header-logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .header-logo .db-badge {
+    background: linear-gradient(135deg, var(--disney-gold), var(--disney-accent));
+    color: var(--disney-dark);
+    padding: 4px 10px;
+    font-size: 11px;
+    font-weight: 900;
+    font-family: 'Cinzel', serif;
+    border-radius: 4px;
+    letter-spacing: 1px;
+    box-shadow: 0 2px 8px rgba(200, 168, 75, 0.5);
+  }
+  .header-logo .portal-text {
+    color: #fff;
+    font-family: 'Cinzel', serif;
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    background: linear-gradient(135deg, #fff 0%, var(--disney-light-gold) 50%, #fff 100%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shimmer 4s linear infinite;
+  }
+  .castle-icon {
+    font-size: 28px;
+    animation: float 3s ease-in-out infinite;
+  }
+  .header-right {
+    color: var(--disney-gold);
+    font-size: 11px;
+    font-family: 'Cinzel', serif;
+    letter-spacing: 1px;
+  }
+
+  /* Header links */
+  .header-links {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    gap: 12px;
+    padding: 8px 24px;
+    background: linear-gradient(90deg, rgba(13, 27, 75, 0.95), rgba(0, 48, 135, 0.95));
+    border-bottom: 1px solid rgba(200, 168, 75, 0.3);
+    font-size: 12px;
+  }
+
+  /* Main content */
+  .main-wrapper {
+    position: relative;
+    z-index: 10;
+    padding: 20px 24px;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  /* Title bar */
+  .page-title {
+    background: linear-gradient(135deg, var(--disney-midnight), var(--disney-sky));
+    border: 1px solid var(--disney-gold);
+    border-radius: 8px 8px 0 0;
+    padding: 10px 20px;
+    font-family: 'Cinzel', serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--disney-accent);
+    margin-bottom: 12px;
+    letter-spacing: 3px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 4px 20px rgba(200, 168, 75, 0.2), inset 0 1px 0 rgba(200, 168, 75, 0.3);
+  }
+  .page-title::before {
+    content: '✦';
+    color: var(--disney-gold);
+    animation: sparkle 2s infinite;
+  }
+  .page-title::after {
+    content: '✦';
+    color: var(--disney-gold);
+    animation: sparkle 2s infinite 1s;
+    margin-left: auto;
+  }
+
+  /* Info table */
+  .info-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: rgba(13, 27, 75, 0.6);
+    margin-bottom: 3px;
+    border: 1px solid rgba(200, 168, 75, 0.3);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .info-table td, .info-table th {
+    border: 1px solid rgba(200, 168, 75, 0.2);
+    padding: 7px 10px;
+    vertical-align: top;
+    font-size: 12px;
+  }
+  .info-table .label {
+    background: linear-gradient(135deg, rgba(0, 48, 135, 0.8), rgba(26, 58, 138, 0.8));
+    color: var(--disney-light-gold);
+    font-weight: 700;
+    width: 180px;
+    white-space: nowrap;
+    border-right: 1px solid rgba(200, 168, 75, 0.4);
+    font-family: 'Noto Serif JP', serif;
+  }
+  .info-table .label-en {
+    font-size: 9px;
+    color: rgba(200, 168, 75, 0.7);
+    font-weight: normal;
+    display: block;
+    font-family: 'Cinzel', serif;
+    letter-spacing: 0.5px;
+    margin-top: 2px;
+  }
+  .info-table .value {
+    background: rgba(10, 10, 46, 0.5);
+    color: var(--disney-cream);
+  }
+  .info-table .section-header {
+    background: linear-gradient(90deg, var(--disney-blue), var(--disney-sky));
+    color: var(--disney-accent);
+    font-weight: 700;
+    font-size: 13px;
+    font-family: 'Cinzel', serif;
+    letter-spacing: 2px;
+    border: none;
+    padding: 8px 12px;
+  }
+
+  /* Class schedule table */
+  .schedule-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: rgba(13, 27, 75, 0.6);
+    margin-bottom: 3px;
+  }
+  .schedule-table td, .schedule-table th {
+    border: 1px solid rgba(200, 168, 75, 0.2);
+    padding: 5px 8px;
+    vertical-align: top;
+    font-size: 12px;
+    color: var(--disney-cream);
+  }
+
+  /* Assessment table */
+  .assess-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: rgba(10, 10, 46, 0.4);
+  }
+  .assess-table td, .assess-table th {
+    border: 1px solid rgba(200, 168, 75, 0.2);
+    padding: 5px 8px;
+    font-size: 12px;
+    color: var(--disney-cream);
+  }
+  .assess-table th {
+    background: linear-gradient(135deg, rgba(0, 48, 135, 0.8), rgba(26, 58, 138, 0.8));
+    color: var(--disney-light-gold);
+    font-weight: 700;
+    text-align: center;
+    font-family: 'Noto Serif JP', serif;
+  }
+  .assess-table td { text-align: center; }
+  .assess-table td:first-child { text-align: left; }
+
+  a { color: var(--disney-gold); text-decoration: none; }
+  a:hover { color: var(--disney-accent); text-decoration: underline; }
+
+  .back-link {
+    font-size: 12px;
+    color: var(--disney-gold);
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'Cinzel', serif;
+    letter-spacing: 1px;
+    transition: color 0.2s;
+  }
+  .back-link::before { content: '← '; }
+  .back-link:hover { color: var(--disney-accent); }
+
+  .fav-link {
+    font-size: 12px;
+    color: var(--disney-gold);
+    cursor: pointer;
+    text-decoration: none;
+  }
+
+  /* Override inline styles for schedule cells */
+  table [style*="background:#ddeeff"] {
+    background: linear-gradient(135deg, rgba(0, 48, 135, 0.9), rgba(26, 58, 138, 0.9)) !important;
+    color: var(--disney-light-gold) !important;
+    border-color: rgba(200, 168, 75, 0.3) !important;
+    font-family: 'Cinzel', serif;
+    letter-spacing: 0.5px;
+  }
+  table [style*="background:#eef4ff"] {
+    background: rgba(26, 58, 138, 0.5) !important;
+    color: var(--disney-light-gold) !important;
+    border-color: rgba(200, 168, 75, 0.2) !important;
+  }
+  table [style*="border:1px solid #aabbcc"] {
+    border-color: rgba(200, 168, 75, 0.2) !important;
+    color: var(--disney-cream) !important;
+  }
+  table [style*="background:#fff9e6"] {
+    background: rgba(200, 168, 75, 0.1) !important;
+    color: var(--disney-cream) !important;
+  }
+
+  /* Inner nested table theming */
+  table table td, table table th {
+    background: inherit;
+    color: var(--disney-cream) !important;
+    border-color: rgba(200, 168, 75, 0.2) !important;
+  }
+  table table th[style*="background:#ddeeff"] {
+    background: linear-gradient(135deg, rgba(0, 48, 135, 0.9), rgba(26, 58, 138, 0.9)) !important;
+    color: var(--disney-light-gold) !important;
+  }
+
+  /* Decorative divider */
+  .magic-divider {
+    text-align: center;
+    color: var(--disney-gold);
+    font-size: 14px;
+    margin: 12px 0;
+    letter-spacing: 8px;
+    opacity: 0.7;
+  }
+
+  /* Section separator label */
+  td.section-header-disney {
+    background: linear-gradient(90deg, var(--disney-midnight), var(--disney-sky), var(--disney-midnight)) !important;
+    color: var(--disney-accent) !important;
+    font-family: 'Cinzel', serif !important;
+    letter-spacing: 3px !important;
+    text-align: center;
+    font-size: 13px !important;
+    padding: 10px !important;
+    border-top: 1px solid rgba(200, 168, 75, 0.4) !important;
+    border-bottom: 1px solid rgba(200, 168, 75, 0.4) !important;
+  }
+
+  /* Footer */
+  .footer-bottom {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    padding: 16px;
+    border-top: 1px solid rgba(200, 168, 75, 0.3);
+    color: rgba(200, 168, 75, 0.6);
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    letter-spacing: 2px;
+    margin-top: 20px;
+  }
