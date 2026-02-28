@@ -351,3 +351,15 @@
     letter-spacing: 2px;
     margin-top: 20px;
   }
+
+
+@media screen and (max-width: 600px) {
+      body {
+        overflow-x: hidden;
+      }
+      .main-wrapper {
+        transform: scale(0.72);
+        transform-origin: top left;
+        width: calc(100% / 0.72);
+      }
+    }
