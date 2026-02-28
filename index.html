@@ -10,7 +10,7 @@
 
 
 
-<body onload="alert('このシラバスはスマートフォン用に最適化されていません。PC端末での閲覧を推奨します。');">
+<body>
 
 <div class="stars" id="stars"></div>
 
@@ -24,9 +24,38 @@
 
 <!-- Main -->
 <div class="main-wrapper">
-  <div class="page-title">シラバス一覧</div>
+
+
+
+
+  <!-- Notice Board -->
+  <div class="notice-board">
+    <div class="notice-header">
+      <div class="notice-title">
+        <span class="notice-icon">✦</span>
+        Information
+      </div>
+      <div class="notice-badge"><span id="newCount">1</span> 件 の新着</div>
+    </div>
+
+    <div class="notice-list">
+
+
+      <div class="notice-item" onclick="openNotice('2/28（土）', '', '講義シラバス順次公開のお知らせ', '現在、順次講義シラバスを作成及び公開しています。全講義シラバス公開まで今しばらくお待ちください。\n\n●現在シラバス公開中の講義\n　・World Disney 入門\n\n\n■ 公開日時：2026年2月28日（土）〜\n■ 担　　当：学園総合情報センター')">
+        <span class="notice-date">2/28（土）</span>
+        <span class="notice-text">講義シラバス順次公開のお知らせ</span>
+      </div>
+
+
+    </div>
+  </div>
+
+
+
+
 
   <!-- Search -->
+  <div class="page-title">シラバス一覧</div>
   <div class="search-bar">
     <div class="search-wrapper">
       <span class="search-icon">🔍</span>
@@ -556,8 +585,14 @@
   ✦ &nbsp; Copyright sh1n* &nbsp; ✦
 </div>
 
+
+
+
+
+
 <script>
-  // Stars
+  
+// Stars
   const sc = document.getElementById('stars');
   for (let i = 0; i < 120; i++) {
     const s = document.createElement('div');
@@ -599,5 +634,63 @@
     input.focus();
   }
 </script>
+<!-- Notice Modal -->
+<div class="modal-overlay" id="noticeModal" onclick="closeNotice(event)">
+  <div class="modal-window">
+    <div class="modal-header">
+      <div class="modal-header-left">
+        <span class="modal-date" id="modalDate"></span>
+        <span class="modal-tag" id="modalTag"></span>
+      </div>
+      <button class="modal-close" onclick="closeNoticeBtn()">×</button>
+    </div>
+    <div class="modal-title" id="modalTitle"></div>
+    <div class="modal-body" id="modalBody"></div>
+  </div>
+</div>
+
+<script>
+  function openNotice(date, tag, title, body) {
+    document.getElementById('modalDate').textContent = date;
+    const tagEl = document.getElementById('modalTag');
+    if (tag) {
+      tagEl.textContent = tag;
+      tagEl.style.display = 'inline-block';
+      // color by tag type
+      tagEl.className = 'modal-tag';
+      if (tag === '邱頑･') tagEl.classList.add('tag-urgent');
+      else if (tag === '驥崎ｦ�') tagEl.classList.add('tag-important');
+      else tagEl.classList.add('tag-info');
+    } else {
+      tagEl.style.display = 'none';
+    }
+    document.getElementById('modalTitle').textContent = title;
+    document.getElementById('modalBody').innerHTML = body.replace(/\n/g, '<br>');
+    const modal = document.getElementById('noticeModal');
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeNoticeBtn() {
+    const modal = document.getElementById('noticeModal');
+    modal.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  function closeNotice(e) {
+    if (e.target === document.getElementById('noticeModal')) {
+      closeNoticeBtn();
+    }
+  }
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') closeNoticeBtn();
+  });
+
+</script>
+
+
+
+
 </body>
 </html>
